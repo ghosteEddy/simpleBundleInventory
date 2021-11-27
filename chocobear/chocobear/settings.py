@@ -17,6 +17,7 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Get .env file from project root directory
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR,'.env'))
 
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     ## ours
-    'users.apps.UsersConfig',
+    'base.apps.BaseConfig',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ DATABASES = {
 }
 
 # custom user model
-AUTH_USER_MODEL = 'users.CUser'
+AUTH_USER_MODEL = 'base.CUser'
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
