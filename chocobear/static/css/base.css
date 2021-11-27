@@ -1,0 +1,61 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap'); */
+:root{
+    --background-color : #e8dad3;
+    --primary-color : #b98c65;
+    --primary_accent : #814e25;
+    --secondary-color : #eecdbd;
+    --text-color : #151519;
+    --input-color : #ebe1d2;
+    --highlight-color : #f89e49;
+    background-color: var(--background-color);
+    font-family: 'Abel';
+    color: var(--text-color);
+}
+
+.button{
+    background-color: var(--secondary-color);
+}
+
+.error-Text{
+    text-align: center;
+    color: red;
+    display: none;
+}
+
+.navbar{
+    padding: 5px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 99%;
+    background-color: var(--primary-color);
+    
+}
+
+.navbar a{
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+.navButton{
+    background-color: var(--secondary-color);
+    text-align: center;
+    padding : 5px;
+    font-size: x-large;
+    flex-grow: 2;
+}
+
+.navbar > .-logout{
+    flex-grow: 1;
+}
+
+.navButton:hover{
+    background-color: var(--highlight-color);
+}
+
+.navFiller{
+    flex-grow: 6;
+    text-align: center;
+    font-size: x-large;
+    padding : 5px;
+}
