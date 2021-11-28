@@ -14,6 +14,16 @@ def addItem(request):
         return 0
     return -1
 
+def editItem(request, item_id):
+    form = ItemForm(request.POST)
+    if form.is_valid():
+        data = form.cleaned_data
+        item = Item.objects.get(id=item_id)
+        item.updateData(data)
+        item.save()
+        return 0
+    return 1
+
 def getAllItems(request):
     allItems = Item.objects.filter(is_deleted=False).order_by('-id')
     response = {}

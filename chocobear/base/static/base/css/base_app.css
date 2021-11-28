@@ -98,3 +98,8 @@ textarea{
     margin: auto 0px auto 0px;
     padding: 5px;
 }
+
+label{
+    padding: 5px;
+    vertical-align: top;
+}

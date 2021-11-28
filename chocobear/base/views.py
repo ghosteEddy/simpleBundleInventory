@@ -70,9 +70,16 @@ def itemAdd(request):
 @login_required
 def itemEdit(request, item_id):
     if request.method == 'GET':
-        form = ItemForm()
-        context = {'form' : form.edit(helpers.getItemById(item_id))}
-        return HttpResponse('Edit Item {}'.format(item_id))
+        form = ItemForm(helpers.getItemById(item_id))
+        template = loader.get_template('base/itemEdit.html')
+        context = {'form' : form}
+        return HttpResponse(template.render(context, request))
+    elif request.method == 'POST':
+        result = api.editItem(request, item_id)
+        if result == 0:
+            return redirect('baseItemMenu')
+        else:
+            return HttpResponse('Something Wrong')
 
 @login_required
 def itemDelete(request, item_id):
