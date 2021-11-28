@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block head %}
+{% csrf_token %}
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    <div class='topContent'>
+        <div class='text -medium'>Total Items : {{ total_items }}</div>
+        <a href='{% url 'baseAddItem' %}' class='button -small -largeText'>Add Item</a>
+    </div>
+    <div class='content -oneColumn'>
+        {% for item in items %}
+            <div class='dataCard'>
+                <div class='fullWidth'>
+                    <div class='data -header -bold'>{{ item.item_code }}</div>
+                    <div class='data -header'>{{ item.item_name }}</div>
+                    <div class='data'>{{ item.item_unit }}</div>
+                    <div class='data -fade'>{{ item.item_remark}}</div>
+                    <a href='{% url 'baseEditItem' item_id=item.id %}' class='button -small'>Edit</a>
+                    <div class='button -small -warning' onclick="deleteItem({{ item.id }})" id='delete'>Delete</div>
+                </div>
+                <div class='fullWidth'>
+                    <div class='label'>Amount</div>
+                    <div class='data -header'>{{item.in_stock}}</div>
+                    <div class='label'>Description</div>
+                    <div class='data'><pre>{{item.item_description}}</pre></div>
+                </div>                            
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% load static %}
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/base/js/itemList.js' %}"></script>
+{% endblock content %}

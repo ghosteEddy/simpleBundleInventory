@@ -1,7 +1,8 @@
 {% load static %}
+<link rel="stylesheet" href="{% static "base/css/base_app.css" %}" />
 <link rel="stylesheet" href="{% static "base/css/menubar.css" %}" />
 <div class='navbar -menu'>
-    <div class='navButton'>Product</div>
+    <a href='{% url 'baseItemMenu' %}' class='navButton'>Items</a>
     <div class='navButton'>Current Stock</div>
     <div class='navButton'>Update Stock</div>
     <div class='navButton'>Store Setting</div>

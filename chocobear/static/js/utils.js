@@ -13,12 +13,29 @@ function sleep(ms){
 }
 
 async function postData(endpoint, body){
-    response = await fetch(endpoint, {
-        method: "POST",
-        headers: {"X-CSRFToken": document.getElementsByName('csrfmiddlewaretoken')[0].value},
-        body: JSON.stringify(body)
-    }).then(data => data.json())
+    try {
+        CSRF = document.getElementsByName('csrfmiddlewaretoken')[0].value
+    }
+    catch{
+        CSRF = null
+    }
+    finally{
+        if (CSRF===null){
+            response = await fetch(endpoint, {
+                method: "POST",
+                body: JSON.stringify(body)
+            }).then(data => data.json())
+        }
+        else{
+            response = await fetch(endpoint, {
+                method: "POST",
+                headers: {"X-CSRFToken": document.getElementsByName('csrfmiddlewaretoken')[0].value},
+                body: JSON.stringify(body)
+            }).then(data => data.json())
+        }
     return response
+    }
+    
 }
 
 function getCurrentUrl(){return window.location.href.split("?")[0]}
