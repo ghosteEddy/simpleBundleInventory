@@ -95,3 +95,17 @@ def inventoryMenu(request):
         data = api.getAllItems(request)
         context = data
         return HttpResponse(template.render(context, request))
+
+@login_required
+def updateInventory(request):
+    if request.method == 'POST':
+        result = api.updateInventory(request)
+        return HttpResponse(json.dumps({'result' : result}))     
+
+@login_required
+def inventoryIn(request):
+    if request.method == 'GET':
+        template = loader.get_template('base/inventoryIn.html')
+        data = api.getAllItems(request)
+        context = data
+        return HttpResponse(template.render(context, request))

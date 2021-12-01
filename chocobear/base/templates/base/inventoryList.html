@@ -15,7 +15,7 @@
     <div class='content -left5 -max80'>
         {% for item in items %}
         <div class='dataCard flex -flexible -max50 -gravLeft'>
-                <div class='data -header -width20 txtRight -row'>{{item.in_stock}}</div>
+                <div class='data -header -width50 txtRight -row'>{{item.in_stock}}</div>
                 <div class='data -width11 -fade -row'>{{ item.item_unit }}</div>
                 <div class='data -header -bold -row'>{{ item.item_code }}</div>
                 <div class='data -header -row'>{{ item.item_name }}</div>
@@ -26,5 +26,5 @@
 </div>
 {% load static %}
 {% comment %} <script src="{% static '/js/utils.js' %}"></script>
-<script src="{% static '/base/js/itemList.js' %}"></script> {% endcomment %}
+<script src="{% static '/base/js/updateStock.js' %}"></script> {% endcomment %}
 {% endblock content %}

@@ -1,11 +1,13 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap'); */
 :root{
     --background-color : #e8dad3;
+    --background-shading: #ffddb0;
     --primary-color : #b98c65;
     --primary_accent : #814e25;
     --secondary-color : #eecdbd;
     --text-color : #151519;
     --input-color : #ebe1d2;
+    --secondary-input-color : #f8f5f0;
     --highlight-color : #f89e49;
     --light-green : #95fd8b;
     background-color: var(--background-color);
@@ -103,6 +105,21 @@
     overflow: hidden;
 }
 
+.-width30{
+    width: 3em;
+    overflow: hidden;
+}
+
+.-width50{
+    width: 5em;
+    overflow: hidden;
+}
+
+.-width100{
+    width: 10em;
+    overflow: hidden;
+}
+
 .txtRight{
     text-align: right;
 }
@@ -120,4 +137,15 @@
 .-row{
     flex-wrap: nowrap;
     flex-direction: row;
+}
+
+.input{
+    font-size: medium;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 5px;
+    background: var(--secondary-input-color);
 }

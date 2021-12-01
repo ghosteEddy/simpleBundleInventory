@@ -121,3 +121,6 @@ label{
 .-gravLeft{
     margin: 5px auto 5px 0px;
 }
+.-shading{
+    background: var(--background-shading);
+}

@@ -1,3 +1,4 @@
+from datetime import date
 from django.http.response import HttpResponse
 from django.utils import timezone
 from .models import *
@@ -38,4 +39,24 @@ def deleteItem(request):
     item.updated_on = timezone.now()
     item.save()
     return 0
-    
+
+def updateInventory(request):
+    data = json.loads(request.body)
+    if(data['flowType'] == 'BUY'):
+        flowType = 'IN'
+    else:
+        flowType = 'OUT'
+    flowChannel = data['flowType']
+    amount = data['update_amount']
+    remark = data['update_remark']
+    itemId = data['item_id']
+    user = request.user.id
+    update = Inventory(itemId=itemId, amount=amount, flowType=flowType, flowChannel=flowChannel, remark=remark, updateBy=user)
+    item = Item.objects.get(id=itemId)
+    if flowType == 'IN':
+        item.in_stock += int(amount)
+    elif flowType == 'OUT':
+        item.in_stock -= int(amount)
+    item.save()
+    update.save()
+    return 0  

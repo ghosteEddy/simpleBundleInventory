@@ -1,7 +1,7 @@
 from typing import get_args
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.utils import timezone
+from django.utils import timezone, dates
 
 from django.utils.translation import gettext_lazy as _
 
@@ -49,7 +49,11 @@ class Inventory(models.Model):
         SHOPEE = 'Shopee', _('Shopee')
         LAZADA = 'Lazada', _('Lazada')
     
-    date = models.DateField(auto_now=False, auto_now_add=False)
+    date = models.DateField(auto_now_add=True)
     flowType = models.CharField(max_length=3, choices=FlowType.choices)
     flowChannel = models.CharField(max_length=10, choices=FlowChannel.choices)
+    itemId = models.BigIntegerField()
     amount = models.IntegerField()
+    remark = models.CharField(max_length=64, null=True, blank=True)
+    updateBy = models.BigIntegerField(default = 0)
+    updated_on = models.DateTimeField(auto_now_add=True, blank=True)
