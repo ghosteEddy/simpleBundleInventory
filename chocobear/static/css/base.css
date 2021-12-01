@@ -7,6 +7,7 @@
     --text-color : #151519;
     --input-color : #ebe1d2;
     --highlight-color : #f89e49;
+    --light-green : #95fd8b;
     background-color: var(--background-color);
     font-family: 'Abel';
     color: var(--text-color);
@@ -86,4 +87,37 @@
 
 .-largeText{
     font-size: large;
+}
+
+.-positiveBg{
+    background: var(--light-green);
+}
+
+.-width11{
+    width: 1.1em;
+    overflow: hidden;
+}
+
+.-width20{
+    width: 2em;
+    overflow: hidden;
+}
+
+.txtRight{
+    text-align: right;
+}
+
+.-max50{
+    max-width: 50%;
+    overflow: hidden;
+}
+
+.-max80{
+    max-width: 80%;
+    overflow: hidden;
+}
+
+.-row{
+    flex-wrap: nowrap;
+    flex-direction: row;
 }

@@ -88,3 +88,10 @@ def itemDelete(request, item_id):
         return HttpResponse(json.dumps({'result' : result}))
     return redirect('baseItemMenu')
 
+@login_required
+def inventoryMenu(request):
+    if request.method == 'GET':
+        template = loader.get_template('base/inventoryList.html')
+        data = api.getAllItems(request)
+        context = data
+        return HttpResponse(template.render(context, request))

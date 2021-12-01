@@ -63,6 +63,10 @@ textarea{
     border-radius: 10px;
 }
 
+.-flexible{
+    width: fit-content;
+}
+
 .fullWidth{
     display: flex;
     width: 100%;
@@ -73,7 +77,9 @@ textarea{
     font-size: medium;
     margin-top: auto;
     margin-bottom: auto;
-    padding: 5px
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .-header{
@@ -99,7 +105,19 @@ textarea{
     padding: 5px;
 }
 
+.-left5{
+    margin-left: 5%;
+}
+
 label{
     padding: 5px;
     vertical-align: top;
+}
+
+.flex{
+    display: flex;
+    padding: 5px;
+}
+.-gravLeft{
+    margin: 5px auto 5px 0px;
 }

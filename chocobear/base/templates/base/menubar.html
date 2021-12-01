@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{% static "base/css/menubar.css" %}" />
 <div class='navbar -menu'>
     <a href='{% url 'baseItemMenu' %}' class='navButton'>Items</a>
-    <div class='navButton'>Current Stock</div>
-    <div class='navButton'>Update Stock</div>
+    <a href='{% url 'baseInventoryMenu' %}' class='navButton'>Current Stock</a>
+    <a href='{% url 'baseInventoryMenu' %}' class='navButton'>Update Stock</a>
     <div class='navButton'>Store Setting</div>
 </div>

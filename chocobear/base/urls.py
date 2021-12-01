@@ -10,5 +10,6 @@ urlpatterns = [
     path('items', views.itemList, name='baseItemMenu'),
     path('items/delete/<int:item_id>', views.itemDelete, name='baseDeleteItem'),
     path('addItem', views.itemAdd, name='baseAddItem'),
-    path('editItem/<int:item_id>', views.itemEdit, name='baseEditItem')
+    path('editItem/<int:item_id>', views.itemEdit, name='baseEditItem'),
+    path('inventory', views.inventoryMenu, name='baseInventoryMenu'),
 ]

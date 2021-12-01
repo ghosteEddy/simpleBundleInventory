@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
+from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
 class CUser(AbstractUser):
     pass
@@ -36,3 +38,18 @@ class Item(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Inventory(models.Model):
+    class FlowType(models.TextChoices):
+        IN = 'IN', _('In')
+        OUT = 'OUT', _('Out')
+    class FlowChannel(models.TextChoices):
+        BUY = 'Buy', _('Buy')
+        FB = 'Facebook', _('Facebook')
+        SHOPEE = 'Shopee', _('Shopee')
+        LAZADA = 'Lazada', _('Lazada')
+    
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    flowType = models.CharField(max_length=3, choices=FlowType.choices)
+    flowChannel = models.CharField(max_length=10, choices=FlowChannel.choices)
+    amount = models.IntegerField()
