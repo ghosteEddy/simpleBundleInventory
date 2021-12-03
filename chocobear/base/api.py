@@ -46,6 +46,14 @@ def updateInventory(request):
         flowType = 'IN'
     else:
         flowType = 'OUT'
+    print(data)
+    if(data['flowType'] == 'MANUAL'):
+        if (int(data['update_amount']) > 0):
+            flowType = 'IN'
+        else:
+            flowType = 'OUT'
+            data['update_amount'] *= -1
+    print(data)
     flowChannel = data['flowType']
     amount = data['update_amount']
     remark = data['update_remark']

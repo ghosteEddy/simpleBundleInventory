@@ -48,6 +48,7 @@ class Inventory(models.Model):
         FB = 'Facebook', _('Facebook')
         SHOPEE = 'Shopee', _('Shopee')
         LAZADA = 'Lazada', _('Lazada')
+        MANUAL = 'Manual', _('Manual')
     
     date = models.DateField(auto_now_add=True)
     flowType = models.CharField(max_length=3, choices=FlowType.choices)

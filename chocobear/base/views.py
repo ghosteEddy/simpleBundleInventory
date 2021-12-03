@@ -100,7 +100,15 @@ def inventoryMenu(request):
 def updateInventory(request):
     if request.method == 'POST':
         result = api.updateInventory(request)
-        return HttpResponse(json.dumps({'result' : result}))     
+        return HttpResponse(json.dumps({'result' : result}))
+
+@login_required
+def inventoryManual(request):
+    if request.method == 'GET':
+        template = loader.get_template('base/inventoryManual.html')
+        data = api.getAllItems(request)
+        context = data
+        return HttpResponse(template.render(context, request))     
 
 @login_required
 def inventoryIn(request):
@@ -109,3 +117,4 @@ def inventoryIn(request):
         data = api.getAllItems(request)
         context = data
         return HttpResponse(template.render(context, request))
+
