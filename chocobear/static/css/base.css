@@ -149,3 +149,11 @@
     border-radius: 5px;
     background: var(--secondary-input-color);
 }
+
+.-middleY{
+    vertical-align: middle;
+}
+
+.-centerEle{
+    margin: auto;
+}

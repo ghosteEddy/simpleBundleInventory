@@ -1,6 +1,7 @@
 from typing import get_args
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.deletion import CASCADE
 from django.utils import timezone, dates
 
 from django.utils.translation import gettext_lazy as _
@@ -58,3 +59,16 @@ class Inventory(models.Model):
     remark = models.CharField(max_length=64, null=True, blank=True)
     updateBy = models.BigIntegerField(default = 0)
     updated_on = models.DateTimeField(auto_now_add=True, blank=True)
+
+class Bundle(models.Model):
+    bundleSKU = models.CharField(max_length=64)
+    bundleName = models.CharField(max_length=64)
+    isShopee = models.BooleanField(default=True)
+    isLazada = models.BooleanField(default=True)
+    remark = models.CharField(max_length=128, null=True)
+    is_deleted = models.BooleanField(default=False)
+class BundleDetail(models.Model):
+    bundleId = models.ForeignKey(Bundle, on_delete=models.CASCADE)
+    item_id = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item_amount = models.BigIntegerField()
+    is_deleted = models.BooleanField(default=False)

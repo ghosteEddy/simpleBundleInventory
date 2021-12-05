@@ -14,5 +14,7 @@ urlpatterns = [
     path('inventory', views.inventoryMenu, name='baseInventoryMenu'),
     path('inventory/in', views.inventoryIn, name='baseInventoryIn'),
     path('updateInventory', views.updateInventory, name='baseUpdateInventory'),
-    path('inventory/manual', views.inventoryManual, name='baseInventoryManual')
+    path('inventory/manual', views.inventoryManual, name='baseInventoryManual'),
+    path('bundles', views.bundleList, name='baseBundleMenu'),
+    path('bundles/add', views.bundleAdd, name='baseBundleAdd')
 ]

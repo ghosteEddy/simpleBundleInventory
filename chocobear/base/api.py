@@ -46,14 +46,12 @@ def updateInventory(request):
         flowType = 'IN'
     else:
         flowType = 'OUT'
-    print(data)
     if(data['flowType'] == 'MANUAL'):
         if (int(data['update_amount']) > 0):
             flowType = 'IN'
         else:
             flowType = 'OUT'
             data['update_amount'] *= -1
-    print(data)
     flowChannel = data['flowType']
     amount = data['update_amount']
     remark = data['update_remark']
@@ -67,4 +65,57 @@ def updateInventory(request):
         item.in_stock -= int(amount)
     item.save()
     update.save()
-    return 0  
+    return 0
+
+def createBundle(request):
+    data = request.POST
+    bundleSKU = data['SKU']
+    bundleName = data['name']
+    remark = data['remark']
+
+    bundle = Bundle.objects.create(bundleSKU=bundleSKU, bundleName=bundleName, remark=remark)
+    bundle.save()
+    bundleId = bundle.id
+    
+    for key in data:
+        if 'item_' in key:
+            itemId = int(key.split('_')[-1])
+            itemAmount = int(data[key])
+            bundleDetail = BundleDetail(bundleId=bundle, item_id=itemId, item_amount=itemAmount)
+            bundleDetail.save()
+    return 0
+
+def getAllBundles(request):
+    bundlesDetail = BundleDetail.objects.filter(is_deleted=False).select_related('bundleId').select_related('item_id')
+    data = {}
+    for i in bundlesDetail:
+        bundle = i.bundleId
+        item = i.item_id
+
+        itemDetail = {}
+        itemDetail['id'] = item.id
+        itemDetail['name'] = item.item_name
+        itemDetail['SKU'] = item.item_code
+        itemDetail['amount'] = i.item_amount
+
+        ## try add detail to bundle
+        try:
+            data[bundle.id]['items'].append(itemDetail)
+        
+        ## create new bundle
+        except:
+            buffer = {}
+            buffer['bundleName'] = bundle.bundleName
+            buffer['bundleId'] = bundle.id
+            buffer['bundleSKU'] = bundle.bundleSKU
+            buffer['bundleRemark'] = bundle.remark
+            buffer['isShopee'] = bundle.isShopee
+            buffer['isLazada'] = bundle.isLazada
+
+            data[bundle.id] = buffer
+            data[bundle.id]['items'] = [itemDetail]
+
+    result = []    
+    for i in data:
+        result.append(data[i])
+    return {'bundles' : result}

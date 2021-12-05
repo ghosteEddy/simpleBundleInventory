@@ -124,3 +124,31 @@ label{
 .-shading{
     background: var(--background-shading);
 }
+
+.searchBox{
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.searchInput{
+    width: 50%;
+    padding: 5px;
+    margin: 5px auto 5px auto;
+    background-color: var(--secondary-input-color);
+    border-radius: 10px;
+    padding: 10px
+}
+
+.searchChoice:hover{
+    background-color: var(--highlight-color);
+    cursor: pointer;
+}
+
+.-hide{
+    display: none;
+}
+
+.-bgSec{
+    background-color: var(--secondary-color);
+}
