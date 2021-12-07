@@ -6,7 +6,7 @@ searchModule = document.getElementById('searchBox')
 
 function filterItemList(){
     textInput = input.value
-   for (i = 0; i < itemCodes.length; i++){
+    for (i = 0; i < itemCodes.length; i++){
        codeResult = itemCodes[i].innerText.toUpperCase().match(textInput.toUpperCase())
        nameResult = itemNames[i].innerText.toUpperCase().match(textInput.toUpperCase())
 

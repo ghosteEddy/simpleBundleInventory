@@ -16,11 +16,12 @@
         <a href='{% url 'baseAddItem' %}' class='button -small -largeText'>Add Item</a>
     </div>
     <div class='content -oneColumn'>
+        <div class='fullWidth'><input class='searchInput -bold -largeText' type='text' id='searchInput' onkeyup='filterItemList()' placeholder='Search Item' class='searchInput'></input></div>
         {% for item in items %}
-            <div class='dataCard'>
+            <div class='dataCard' id='item_{{ item.id }}'>
                 <div class='fullWidth'>
-                    <div class='data -header -bold'>{{ item.item_code }}</div>
-                    <div class='data -header'>{{ item.item_name }}</div>
+                    <div class='data -header -bold' id="item_code_{{ item.id }}" name="{{item.id}}">{{ item.item_code }}</div>
+                    <div class='data -header' id="item_name_{{ item.id }}" name="{{item.id}}">{{ item.item_name }}</div>
                     <div class='data'>{{ item.item_unit }}</div>
                     <div class='data -fade'>{{ item.item_remark}}</div>
                     <a href='{% url 'baseEditItem' item_id=item.id %}' class='button -small'>Edit</a>
