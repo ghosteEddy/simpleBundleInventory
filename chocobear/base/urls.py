@@ -16,5 +16,8 @@ urlpatterns = [
     path('updateInventory', views.updateInventory, name='baseUpdateInventory'),
     path('inventory/manual', views.inventoryManual, name='baseInventoryManual'),
     path('bundles', views.bundleList, name='baseBundleMenu'),
-    path('bundles/add', views.bundleAdd, name='baseBundleAdd')
+    path('bundles/add', views.bundleAdd, name='baseBundleAdd'),
+    path('inventory/outShopee', views.inventoryOutShopee, name='baseInventoryOutShopee'),
+    path('inventory/outLazada', views.inventoryOutLazada, name='baseInventoryOutLazada'),
+    path('sellBundle', views.inventorySellBundle, name='baseInventorySellBundle'),
 ]

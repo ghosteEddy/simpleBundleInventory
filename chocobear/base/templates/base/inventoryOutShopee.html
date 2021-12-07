@@ -1,0 +1,39 @@
+{% extends "main.html" %}
+{% block head %}
+{% csrf_token %}
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    {% include 'base/updateStockMenu.html' %}
+    <div class='-bold -header -largeText -center' style='background:orange'>Sale : Shopee</div>
+    <div class='content -left5 -max80'>
+        <div class='searchBox' id="searchBox">
+            <div class='fullWidth'><input class='searchInput -bold -largeText' type='text' id='searchInput' onkeyup='filterItemList()' placeholder='Search Item' class='searchInput'></input></div>
+            {% for item in bundles %}
+            {% if forloop.counter|divisibleby:2 %}<form id='bundle_{{item.bundleId}}' class='dataCard flex -flexible -gravLeft'>
+                {% else %}<form id='bundle_{{item.bundleId}}' class='dataCard flex -flexible -gravLeft -shading'> {% endif %}
+                    <input type='number' min='0' class='input -width50 txtRight -row' placeholder='SELL' id='update_amount' name='update_amount' required></input>
+                    <div class='data -header -bold -row bundleSKU'  name='{{item.bundleId}}'>{{ item.bundleSKU }}</div>
+                    <div class='data -header -row bundleName' name="{{ item.bundleId }}">{{ item.bundleName }}</div>
+                    <div class='data -fade -row'>{{ item.bundleRemark }}</div>
+                    <input type='text' class='input -width100 txtRight -row' placeholder='Remark' id='update_remark' name='update_remark'></input>
+                    <button type='button' id='{{item.bundleId}}' onclick='sellBundle({{ item.bundleId }},"{{ item.bundleName }}","SHOPEE")' class='button'>Sell Shopee</button>
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% load static %}
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/base/js/updateStock.js' %}"></script>
+{% endblock content %}
+{% block script %}
+<script src="{% static 'base/js/searchBundle.js' %}"></script>
+{% endblock script %}

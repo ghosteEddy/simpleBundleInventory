@@ -10,6 +10,7 @@
     --secondary-input-color : #f8f5f0;
     --highlight-color : #f89e49;
     --light-green : #95fd8b;
+    --alert : #ff6060;
     background-color: var(--background-color);
     font-family: 'Abel';
     color: var(--text-color);
@@ -156,4 +157,13 @@
 
 .-centerEle{
     margin: auto;
+}
+
+.-alertBg{
+    background-color: var(--alert);
+}
+
+.-dangerBg{
+    background-color: red;
+    color: white;
 }

@@ -15,7 +15,7 @@
     <div class='content -left5 -max80'>
         {% for item in items %}
         <div class='dataCard flex -flexible -max50 -gravLeft'>
-                <div class='data -header -width50 txtRight -row'>{{item.in_stock}}</div>
+                <div class='data -header -width50 txtRight -row {% if item.in_stock < 0 %}-dangerBg {% elif item.in_stock == 0 %}-alertBg{% endif %} '>{{item.in_stock}}</div>
                 <div class='data -width11 -fade -row'>{{ item.item_unit }}</div>
                 <div class='data -header -bold -row'>{{ item.item_code }}</div>
                 <div class='data -header -row'>{{ item.item_name }}</div>

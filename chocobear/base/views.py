@@ -94,7 +94,6 @@ def bundleList(request):
         data = api.getAllBundles(request)
         template = loader.get_template('base/bundleList.html')
         context = data
-        print(data)
         return HttpResponse(template.render(context, request))
 
 @login_required
@@ -129,6 +128,12 @@ def updateInventory(request):
         return HttpResponse(json.dumps({'result' : result}))
 
 @login_required
+def inventorySellBundle(request):
+    if request.method == 'POST':
+        result = api.sellBundle(request)
+        return HttpResponse(json.dumps({'result' : result}))
+
+@login_required
 def inventoryManual(request):
     if request.method == 'GET':
         template = loader.get_template('base/inventoryManual.html')
@@ -144,3 +149,18 @@ def inventoryIn(request):
         context = data
         return HttpResponse(template.render(context, request))
 
+@login_required
+def inventoryOutShopee(request):
+    if request.method == 'GET':
+        template = loader.get_template('base/inventoryOutShopee.html')
+        data = api.getAllBundles(request, 'SHOPEE')
+        context = data
+        return HttpResponse(template.render(context, request))
+
+@login_required
+def inventoryOutLazada(request):
+    if request.method == 'GET':
+        template = loader.get_template('base/inventoryOutLazada.html')
+        data = api.getAllBundles(request, 'LAZADA')
+        context = data
+        return HttpResponse(template.render(context, request))

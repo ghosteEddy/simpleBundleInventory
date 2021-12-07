@@ -12,8 +12,18 @@ def addItem(request):
         data = form.cleaned_data
         item = Item(item_code=data['item_code'], item_name=data['item_name'],item_unit=data['item_unit'], item_description=data['item_description'], item_remark=data['item_remark'], updated_by=user)
         item.save()
+        if data['add_shopee'] == True or data['add_lazada'] == True:
+            addBundleHelper(item, data)
         return 0
     return -1
+
+def addBundleHelper(itemObj :Item, data :dict):
+    item = Item.objects.get(id=itemObj.id)
+    bundle = Bundle(bundleSKU=item.item_code, bundleName=item.item_name, isShopee=data['add_shopee'], isLazada=data['add_lazada'])
+    bundle.save()
+    bundleDetail = BundleDetail(bundleId=bundle, item_id=item, item_amount=1)    
+    bundleDetail.save()
+    return 0
 
 def editItem(request, item_id):
     form = ItemForm(request.POST)
@@ -67,6 +77,25 @@ def updateInventory(request):
     update.save()
     return 0
 
+def sellBundle(request):
+    data = json.loads(request.body)
+    flowType = 'OUT'
+    flowChannel = data['flowType']
+    amount = data['update_amount']
+    remark = data['update_remark']
+    itemId = data['item_id']
+    user = request.user.id
+    update = Inventory(itemId=itemId, amount=amount, flowType=flowType, flowChannel=flowChannel, remark=remark, updateBy=user)
+
+    bundleId = data['bundle_id']
+    bundleDetails = BundleDetail.objects.filter(bundleId=bundleId, is_deleted=False)
+    for i in bundleDetails:
+        item = Item.objects.get(id=i.item_id)
+        item.in_stock = item.in_stock - amount * i.item_amount
+        item.save()
+    update.save()
+    return 0
+
 def createBundle(request):
     data = request.POST
     bundleSKU = data['SKU']
@@ -85,8 +114,13 @@ def createBundle(request):
             bundleDetail.save()
     return 0
 
-def getAllBundles(request):
-    bundlesDetail = BundleDetail.objects.filter(is_deleted=False).select_related('bundleId').select_related('item_id')
+def getAllBundles(request, onlyChannel=''):
+    if onlyChannel.lower == 'shopee':
+        bundlesDetail = BundleDetail.objects.filter(is_deleted=False, isShopee=True).select_related('bundleId').select_related('item_id')
+    elif onlyChannel == 'lazada':
+        bundlesDetail = BundleDetail.objects.filter(is_deleted=False).select_related('bundleId').select_related('item_id')
+    else:
+        bundlesDetail = BundleDetail.objects.filter(is_deleted=False).select_related('bundleId').select_related('item_id')
     data = {}
     for i in bundlesDetail:
         bundle = i.bundleId

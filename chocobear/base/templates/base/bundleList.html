@@ -17,12 +17,12 @@
     </div>
     <div class='content -oneColumn'>
         {% for item in bundles %}
-            <div class='dataCard'>
+            <div class='dataCard -max80'>
                 <div class='fullWidth'>
                     <div class='data -header -bold'>{{ item.bundleSKU }}</div>
                     <div class='data -header'>{{ item.bundleName }}</div>
-                    {% if item.isShopee %}<div class='data'>Shopee</div>{% endif %}
-                    {% if item.isLazada %}<div class='data'>Lazada</div>{% endif %}
+                    {% if item.isShopee %}<div class='data shopee'>Shopee</div>{% endif %}
+                    {% if item.isLazada %}<div class='data lazada'>Lazada</div>{% endif %}
                     <div class='data -fade'>{{ item.bundleRemark}}</div>
                     <a href='' class='button -small'>Edit</a>
                     <div class='button -small -warning' onclick="deleteItem({{ item }})" id='delete'>Delete</div>
