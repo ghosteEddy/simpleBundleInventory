@@ -1,0 +1,46 @@
+{% extends "main.html" %}
+{% block head %}
+{% csrf_token %}
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    <div class='topContent'>
+        <div class='text -medium'> Bundles </div>
+        <a href='{% url 'baseBundleAdd' %}' class='button -small -largeText'>Add Bundle</a>
+    </div>
+    <div class='content -oneColumn'>
+        {% for item in bundles %}
+            <div class='dataCard -max80'>
+                <div class='fullWidth'>
+                    <div class='data -header -bold'>{{ item.bundleSKU }}</div>
+                    <div class='data -header'>{{ item.bundleName }}</div>
+                    {% if item.isShopee %}<div class='data shopee'>Shopee</div>{% endif %}
+                    {% if item.isLazada %}<div class='data lazada'>Lazada</div>{% endif %}
+                    <div class='data -fade'>{{ item.bundleRemark}}</div>
+                    <a href='' class='button -small'>Edit</a>
+                    <div class='button -small -warning' onclick="deleteItem({{ item }})" id='delete'>Delete</div>
+                </div>
+                <div class='dataCard -left5'>
+                    {% for i in item.items %}
+                    <div class='flex'>
+                        <div class='data -header -row'>{{i.amount}}</div>
+                        <div class='label -row'> x {{i.SKU}}</div>
+                        <div class='data -row'>{{i.name}}</div>
+                    </div>
+                    {% endfor %}
+                </div>                            
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% load static %}
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/base/js/itemList.js' %}"></script>
+{% endblock content %}

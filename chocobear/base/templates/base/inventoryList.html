@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block head %}
+{% csrf_token %}
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    {% include 'base/updateStockMenu.html' %}
+    <div class='content -left5 -max80'>
+        <div class='fullWidth'><input class='searchInput -bold -largeText' type='text' id='searchInput' onkeyup='filterItemList()' placeholder='Search Item' class='searchInput'></input></div>
+        {% for item in items %}
+        <div class='dataCard flex -flexible -max50 -gravLeft' id='item_{{ item.id }}'>
+                <div class='data -header -width50 txtRight -row {% if item.in_stock < 0 %}-dangerBg {% elif item.in_stock == 0 %}-alertBg{% endif %} '>{{item.in_stock}}</div>
+                <div class='data -width11 -fade -row'>{{ item.item_unit }}</div>
+                <div class='data -header -bold -row itemCode' id="item_code_{{ item.id }}" name="{{item.id}}">{{ item.item_code }}</div>
+                <div class='data -header -row itemName' id="item_name_{{ item.id }}" name="{{item.id}}">{{ item.item_name }}</div>
+                <div class='data -fade -row'>{{ item.item_remark}}</div>                   
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% load static %}
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/base/js/search.js' %}"></script>
+{% endblock content %}

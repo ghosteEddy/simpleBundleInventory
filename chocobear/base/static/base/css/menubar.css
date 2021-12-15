@@ -1,0 +1,6 @@
+.-menu{
+    border-radius: 0px;
+}
+.-menu > .navButton{
+    border: 1px var(--primary_accent) solid;
+}

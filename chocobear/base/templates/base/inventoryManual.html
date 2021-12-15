@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block head %}
+{% csrf_token %}
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    {% include 'base/updateStockMenu.html' %}
+    <div class='-bold -header -largeText -center'>Update Stock : Manual</div>
+    <div class='content -left5 -max80'>
+        {% for item in items %}
+        {% if forloop.counter|divisibleby:2 %}<form id='{{item.id}}' class='dataCard flex -flexible -gravLeft'>
+            {% else %}<form id='{{item.id}}' class='dataCard flex -flexible -gravLeft -shading'> {% endif %}
+                <div class='data -header -width100 txtRight -row'>In Stock : {{item.in_stock}}</div>
+                <input type='number' min='0' class='input -width50 txtRight -row' placeholder='Amount' id='update_amount' name='update_amount' required></input>
+                <div class='data -width11 -fade -row'>{{ item.item_unit }}</div>
+                <div class='data -header -bold -row'>{{ item.item_code }}</div>
+                <div class='data -header -row'>{{ item.item_name }}</div>
+                <input type='text' class='input -width100 txtRight -row' placeholder='Remark' id='update_remark' name='update_remark'></input>
+                <button type='button' onclick='updateItem({{ item.id }},"{{ item.item_name }}","manualIn")' class='button -width30 -positiveBg'>In</button>
+                <button type='button' onclick='updateItem({{ item.id }},"{{ item.item_name }}","manualOut")' class='button -width30'>Out</button>
+            </form>
+        {% endfor %}
+    </div>
+</div>
+{% load static %}
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/base/js/updateStock.js' %}"></script>
+{% endblock content %}

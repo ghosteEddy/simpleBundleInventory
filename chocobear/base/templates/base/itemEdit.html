@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block head %}
+
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    <div class='topContent'>
+        <div class='text -medium -center'>Edit {{ item.item_name }} </div>
+    </div>
+    <div class='form'>
+        <form action="editItem" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='button' type="submit" formaction="" value='Submit'>Confirm</button>
+            <a class='button -warning' href='{% url 'baseItemMenu' %}'>Cancel</a>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

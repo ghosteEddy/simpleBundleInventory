@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block head %}
+
+{% endblock head %}
+
+{% block navbar %}
+{% include "topNavBar.html" %}
+{% include "base/menubar.html" %}
+{% endblock navbar %}
+
+{% block content %}
+
+<div class='main'>
+    <div class='topContent'>
+        <div class='text -medium -center'>Add item</div>
+    </div>
+    <div class='form'>
+        <form action="addItem" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class='button' type="submit" value='Submit'>Add</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

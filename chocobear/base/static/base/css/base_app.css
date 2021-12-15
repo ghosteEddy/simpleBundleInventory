@@ -1,0 +1,174 @@
+.main{
+    background-color: var(--primary-color);
+    margin: auto;
+    width: 99%;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.text{
+    background-color: var(--input-color);
+    align-content: center;
+    padding: 5px 10px 5px 10px;
+}
+
+.topContent{
+    display: flex;
+    padding: 15px;
+    font-size: x-large;
+}
+
+.topContent > .text{
+    border-radius: 25px;
+}
+
+.topContent > .-small{
+    flex-grow: 1;
+}
+
+.topContent > .-medium{
+    flex-grow: 3;
+}
+
+.form{
+    max-width: 80%;
+    margin: 5px auto 5px auto;
+    padding: 50px;
+    background: var(--secondary-color);
+    border-radius: 25px;
+}
+
+form > p{
+    font-size: large;
+}
+
+input{
+    background-color: var(--input-color);
+}
+
+textarea{
+    background: var(--input-color);
+}
+
+.content{
+    width: 98%;
+    padding: 5px;
+}
+
+.dataCard{
+    width: 100%;
+    padding: 5px;
+    margin: 5px auto 5px auto;
+    background-color: var(--input-color);
+    border-radius: 10px;
+}
+
+.-flexible{
+    width: fit-content;
+}
+
+.fullWidth{
+    display: flex;
+    width: 100%;
+    padding: 5px;
+}
+
+.data{
+    font-size: medium;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 5px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.-header{
+    padding: 5px;
+    margin-right: 5px;
+    background: var(--secondary-color);
+    font-size: large;
+    border-radius: 5px;
+}
+
+.-fade{
+    opacity: 60%;
+}
+
+.-bold{
+    font-weight: bold;
+}
+
+.label{
+    font-size: medium;
+    font-weight: bold;
+    margin: auto 0px auto 0px;
+    padding: 5px;
+}
+
+.-left5{
+    margin-left: 5%;
+}
+
+label{
+    padding: 5px;
+    vertical-align: top;
+}
+
+.flex{
+    display: flex;
+    padding: 5px;
+}
+.-gravLeft{
+    margin: 5px auto 5px 0px;
+}
+.-shading{
+    background: var(--background-shading);
+}
+
+.searchBox{
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.searchInput{
+    width: 50%;
+    padding: 5px;
+    margin: 5px auto 5px auto;
+    background-color: var(--secondary-input-color);
+    border-radius: 10px;
+    padding: 10px
+}
+
+.searchChoice:hover{
+    background-color: var(--highlight-color);
+    cursor: pointer;
+}
+
+.-hide{
+    display: none;
+}
+
+.-bgSec{
+    background-color: var(--secondary-color);
+}
+
+.-alertBg{
+    background-color: var(--alert);
+}
+
+.-dangerBg{
+    background-color: red;
+    color: white;
+}
+
+.shopee{
+    background-color: orange;
+    border-radius: 5px;
+}
+
+.lazada{
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+}

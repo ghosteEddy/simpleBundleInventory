@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/base.css" %}" />
+    {% block head %}{% endblock head %}
+    </head>
+
+    <body>
+    {% block navbar %}{% endblock navbar %}
+    {% block content %}{% endblock content %}
+    {% block script %}{% endblock script %}
+    </body>
+</html>
