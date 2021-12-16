@@ -114,6 +114,23 @@ def bundleAdd(request):
             return HttpResponse('Something Wrong')
 
 @login_required
+def bundleEdit(request, bundleId):
+    if request.method == 'GET':
+        template = loader.get_template('base/bundleEdit.html')
+        data = api.getBundleInfo(bundleId)
+        context = data
+        context['allItems'] = api.getAllItems(request)
+        return HttpResponse(template.render(context, request))
+    elif request.method == 'POST':
+        if len(request.POST) <= 3:
+            return HttpResponse('please select item in bundle')
+        result = api.editBundle(request)
+        if result == 0:
+            return redirect('baseBundleMenu')
+        else:
+            return HttpResponse('Something Wrong')
+
+@login_required
 def inventoryMenu(request):
     if request.method == 'GET':
         template = loader.get_template('base/inventoryList.html')
