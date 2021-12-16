@@ -19,7 +19,7 @@ def addItem(request):
 
 def addBundleHelper(itemObj :Item, data :dict):
     item = Item.objects.get(id=itemObj.id)
-    bundle = Bundle(bundleSKU=item.item_code, bundleName=item.item_name, isShopee=data['add_shopee'], isLazada=data['add_lazada'])
+    bundle = Bundle(bundleSKU=item.item_code, bundleName=item.item_name, bundleDescription=item.item_description, isShopee=data['add_shopee'], isLazada=data['add_lazada'])
     bundle.save()
     bundleDetail = BundleDetail(bundleId=bundle, item_id=item, item_amount=1)    
     bundleDetail.save()
@@ -101,16 +101,18 @@ def createBundle(request):
     bundleSKU = data['SKU']
     bundleName = data['name']
     remark = data['remark']
+    description = data['description']
 
-    bundle = Bundle.objects.create(bundleSKU=bundleSKU, bundleName=bundleName, remark=remark)
+    bundle = Bundle.objects.create(bundleSKU=bundleSKU, bundleName=bundleName, bundleDescription=description,remark=remark)
     bundle.save()
     bundleId = bundle.id
     
     for key in data:
         if 'item_' in key:
             itemId = int(key.split('_')[-1])
+            item = Item.objects.get(id=itemId)
             itemAmount = int(data[key])
-            bundleDetail = BundleDetail(bundleId=bundle, item_id=itemId, item_amount=itemAmount)
+            bundleDetail = BundleDetail(bundleId=bundle, item_id=item, item_amount=itemAmount)
             bundleDetail.save()
     return 0
 
@@ -143,6 +145,7 @@ def getAllBundles(request, onlyChannel=''):
             buffer['bundleId'] = bundle.id
             buffer['bundleSKU'] = bundle.bundleSKU
             buffer['bundleRemark'] = bundle.remark
+            buffer['bundleDescription'] = bundle.bundleDescription
             buffer['isShopee'] = bundle.isShopee
             buffer['isLazada'] = bundle.isLazada
 

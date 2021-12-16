@@ -19,15 +19,19 @@
             {% csrf_token %}
             <div class='dataCard'>
                 <label class='label -middleY' for='SKU' required>SKU</label>
-                <input class='input' type="text" max="64" name="SKU" placeholder="SKU" required></input></input>
+                <input class='input' type="text" max="64" name="SKU" placeholder="SKU" required></input>
             </div>
             <div class='dataCard'>
                 <label class='label -middleY' for='name' required>Name</label>
-                <input class='input' type="text" max="64" name="name" placeholder="Name" required></input></input>
+                <input class='input' type="text" max="64" name="name" placeholder="Name" required></input>
             </div>
             <div class='dataCard'>
-                <label class='label -middleY' for='remark' required>Name</label>
-                <input class='input' type="text" max="64" name="remark" placeholder="Remark"></input></input>
+                <label class='label -middleY' for='remark' required>Description</label>
+                <textarea class='input' max="1024" name="description" placeholder="Description"></textarea>
+            </div> 
+            <div class='dataCard'>
+                <label class='label -middleY' for='remark' required>Remark</label>
+                <input class='input' type="text" max="64" name="remark" placeholder="Remark"></input>
             </div>               
             <div class='dataCard'>
                 <label class='label -middleY' for='Name' required>Item</label>

@@ -63,6 +63,7 @@ class Inventory(models.Model):
 class Bundle(models.Model):
     bundleSKU = models.CharField(max_length=64)
     bundleName = models.CharField(max_length=64)
+    bundleDescription = models.CharField(max_length=1024, null=True, blank=True)
     isShopee = models.BooleanField(default=True)
     isLazada = models.BooleanField(default=True)
     remark = models.CharField(max_length=128, null=True)
