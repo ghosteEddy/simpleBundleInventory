@@ -25,7 +25,7 @@
                         {% if item.isShopee %}<div class='data shopee'>Shopee</div>{% endif %}
                         {% if item.isLazada %}<div class='data lazada'>Lazada</div>{% endif %}
                         {% if item.bundleRemark != None %}<div class='data -fade'>{{ item.bundleRemark}}</div>{% endif %}
-                        <a href='' class='button -small'>Edit</a>
+                        <a href='{% url 'baseBundleEdit' bundleId=item.bundleId %}' class='button -small'>Edit</a>
                         <div class='button -small -warning' onclick="deleteItem({{ item }})" id='delete'>Delete</div>
                     </div>
                     <div class='dataCard -left5'>

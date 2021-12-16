@@ -20,4 +20,5 @@ urlpatterns = [
     path('inventory/outShopee', views.inventoryOutShopee, name='baseInventoryOutShopee'),
     path('inventory/outLazada', views.inventoryOutLazada, name='baseInventoryOutLazada'),
     path('sellBundle', views.inventorySellBundle, name='baseInventorySellBundle'),
+    path('bundles/edit/<int:bundleId>', views.bundleEdit, name='baseBundleEdit'),
 ]
