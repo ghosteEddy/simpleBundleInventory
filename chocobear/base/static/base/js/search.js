@@ -29,7 +29,9 @@ function filterItemList(){
 function addSearchItem(itemId){
     let itemEle = document.getElementById('item_' + itemId)
     let amount = document.getElementById(itemId + '_amount').value
-    console.log('ID ' + itemId + ' : ' + amount)
+    if (amount < 1){
+        return window.alert('You forgot amount')
+    }
     let selectedContainer = document.getElementById('selectedItem')
     
     let container = document.createElement("div")
@@ -53,13 +55,6 @@ function addSearchItem(itemId){
     
     selectedContainer.appendChild(container)
     searchBox.classList.add('-hide')
-
-    // let addedHtml = `<div class="dataCard flex -bgSec -max50 -left5" id="selectedItemId_${itemId}">` + itemEle.innerHTML + `<input type=hidden name="itemId" value="${itemId}"><input type=hidden name="itemAmount" value="${amount}">` + '</div>'
-    // selectedContainer.innerHTML += addedHtml
-    // selectedContainer.appendChild
-    // subContainer = document.getElementById(`selectedItemId_${itemId}`)
-    // subContainer.removeChild[3]
-    // console.log (subContainer)
 }
 
 function addItem(){
