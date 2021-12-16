@@ -17,25 +17,33 @@
     </div>
     <div class='content -oneColumn'>
         {% for item in bundles %}
-            <div class='dataCard -max80'>
-                <div class='fullWidth'>
-                    <div class='data -header -bold'>{{ item.bundleSKU }}</div>
-                    <div class='data -header'>{{ item.bundleName }}</div>
-                    {% if item.isShopee %}<div class='data shopee'>Shopee</div>{% endif %}
-                    {% if item.isLazada %}<div class='data lazada'>Lazada</div>{% endif %}
-                    <div class='data -fade'>{{ item.bundleRemark}}</div>
-                    <a href='' class='button -small'>Edit</a>
-                    <div class='button -small -warning' onclick="deleteItem({{ item }})" id='delete'>Delete</div>
-                </div>
-                <div class='dataCard -left5'>
-                    {% for i in item.items %}
-                    <div class='flex'>
-                        <div class='data -header -row'>{{i.amount}}</div>
-                        <div class='label -row'> x {{i.SKU}}</div>
-                        <div class='data -row'>{{i.name}}</div>
+            <div class='dataCard -max80 flex'>
+                <div>
+                    <div class='fullWidth'>
+                        <div class='data -header -bold'>{{ item.bundleSKU }}</div>
+                        <div class='data -header'>{{ item.bundleName }}</div>
+                        {% if item.isShopee %}<div class='data shopee'>Shopee</div>{% endif %}
+                        {% if item.isLazada %}<div class='data lazada'>Lazada</div>{% endif %}
+                        {% if item.bundleRemark != None %}<div class='data -fade'>{{ item.bundleRemark}}</div>{% endif %}
+                        <a href='' class='button -small'>Edit</a>
+                        <div class='button -small -warning' onclick="deleteItem({{ item }})" id='delete'>Delete</div>
                     </div>
-                    {% endfor %}
-                </div>                            
+                    <div class='dataCard -left5'>
+                        {% for i in item.items %}
+                        <div class='flex'>
+                            <div class='data -header -row'>{{i.amount}}</div>
+                            <div class='label -row'> x {{i.SKU}}</div>
+                            <div class='data -row'>{{i.name}}</div>
+                        </div>
+                        {% endfor %}
+                    </div> 
+                </div>
+                <div>
+                    <div class='fullWidth'>
+                        <div class='label -bold -row'>Description</div>
+                        <div class='data -row'>{{ item.bundleDescription }}</div>
+                    </div>
+                </div>                           
             </div>
         {% endfor %}
     </div>
